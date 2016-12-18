@@ -7,7 +7,7 @@
 $var = 4;
 
 #function example
-function switchVar (){
+function switchVar(){
     $var = 0;
     #this will return zero
     print "\$var is $var in this case.\n";
@@ -18,7 +18,7 @@ switchVar();
 print "\$var here is $var however.\n";
 
 #to use global variable, use the GLOBAL keyword
-function dontSwitch (){
+function dontSwitch(){
     GLOBAL $var;
     $var++;
     print "Now \$var is $var.\n";
@@ -28,7 +28,7 @@ dontSwitch();
 
 #to make variable keep count in next function call, use the STATIC keyword
 #static appears to need to be assigned to a value first
-function tallyNumber (){
+function tallyNumber(){
     STATIC $var = 0;
     $var++;
     print "Here \$var will be \n";
@@ -162,4 +162,29 @@ function splitString($param){
 #call function
 splitString($testString1);
 
+#testing eregi_replace() function
+function replaceWord($param, $mystring){
+    $changeVal = eregi_replace("([a-z]+)", $mystring, $param);
+
+    Print "$changeVal \n";
+}
+
+#call function
+#eregi_replace() will replace both words separated by period in the
+#first example, but it will only replace the one word in the second
+replaceWord($testString1, "derp");
+replaceWord($testString2, "dumb dee dumb");
+
+function checkLength($param){
+    if(! eregi("[[:alnum:]]{8,10}", $param)){
+        Print "The word $param does not contain between 8 to 10 characters \n";
+    }
+    else{
+        Print "The word $param contains bewteen 8 to 10 characters \n";
+    }
+}
+
+#call function
+checkLength("robust");
+checkLength("warcraft");
 ?>
